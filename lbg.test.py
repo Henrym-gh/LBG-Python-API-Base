@@ -20,21 +20,21 @@ class MyLbgApiTestCase(unittest.TestCase):
         Test to see if item_builder returns the correctly keyed dictionary object
         based on raw data passed to it
         """
-        expected = {'name': 'Cappuccino', 'description': 'A balanced blend of espresso, steamed milk, and frothy milk foam', 'price': 5, '_id': 99}
-        self.assertEqual(item_builder("Cappuccino", "A balanced blend of espresso, steamed milk, and frothy milk foam", 5, 99), expected)
+        expected = {'name': 'Cappuccino', 'description': 'A balanced blend of espresso, steamed milk, and frothy milk foam', 'price': 3.6, '_id': 99}
+        self.assertEqual(item_builder("Cappuccino", "A balanced blend of espresso, steamed milk, and frothy milk foam", 3.6, 99), expected)
 
     def test_item_builder_type(self):
         """
         Test to see if item_builder returns a dictionary object
         """
-        self.assertIsInstance(item_builder("Cappuccino", "A balanced blend of espresso, steamed milk, and frothy milk foam", 5, 99), dict)
+        self.assertIsInstance(item_builder("Cappuccino", "A balanced blend of espresso, steamed milk, and frothy milk foam", 3.6, 99), dict)
 
     def test_create_post_request_status(self):
         """
         Test to see if RESTful API returns a 201 (CREATED) status ok for a
         Create (Post) request.  Note.  API will need to be running(!)
         """
-        response = requests.post(BASE_URL + '/create', json = {'name': 'Cappuccino', 'description': 'A balanced blend of espresso, steamed milk, and frothy milk foam', 'price': 5})
+        response = requests.post(BASE_URL + '/create', json = {'name': 'Cappuccino', 'description': 'A balanced blend of espresso, steamed milk, and frothy milk foam', 'price': 3.6})
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @unittest.skip("Skip this test for now using this decorator...")
