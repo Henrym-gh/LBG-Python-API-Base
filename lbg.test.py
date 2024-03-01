@@ -43,7 +43,7 @@ class MyLbgApiTestCase(unittest.TestCase):
         Test to see if RESTful API returns an object for a simple
         Create (Post) request.  Note.  API will need to be running(!)
         """
-        response = requests.post(BASE_URL + '/create', json = {'name': 'Espresso', 'description': 'A concentrated shot of coffee brewed by forcing hot water through finely-ground coffee beans', 'price': 3})
+        response = requests.post(BASE_URL + '/create', json = {'name': 'Espresso', 'description': 'A concentrated shot of coffee brewed by forcing hot water through finely ground coffee beans', 'price': 3})
         self.assertIsInstance(response, object)
     
     #verify object returned by api is a valid api response
@@ -53,7 +53,7 @@ class MyLbgApiTestCase(unittest.TestCase):
         Test to see if RESTful API returns an object with the correct fields for a simple
         Read (GET) request.  Note.  API will need to be running(!)
         """
-        item = requests.post(BASE_URL + '/create', json = {'name': 'Espresso', 'description': 'A concentrated shot of coffee brewed by forcing hot water through finely-ground coffee beans', 'price': 3})
+        item = requests.post(BASE_URL + '/create', json = {'name': 'Espresso', 'description': 'A concentrated shot of coffee brewed by forcing hot water through finely ground coffee beans', 'price': 3})
         response = requests.get(BASE_URL + '/read/1')
         self.assertEqual(response.json(), {"_id":1, 'name': 'Espresso', 'description': 'A concentrated shot of coffee brewed by forcing hot water through finely-ground coffee beans', 'price': 3})
     
