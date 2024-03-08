@@ -32,7 +32,7 @@ modify_app() {
 run_docker() {
     echo "Running Docker container..."
     sleep 3
-    docker run -d -p 5001:$PORT -e PORT=$PORT $DOCKER_IMAGE
+    docker run -d -p 5001:$PORT -e PORT=$PORT --name coffee-app $DOCKER_IMAGE
 }
 
 # Main script execution
@@ -45,3 +45,4 @@ build_docker
 run_docker
 
 echo "Build process completed successfully."
+docker ps -a
