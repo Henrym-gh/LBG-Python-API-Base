@@ -12,6 +12,7 @@ pipeline {
                 sh deploy.sh
                 cleanup
                 build_docker
+                modify_app
                 '''
             }
         }
@@ -24,7 +25,5 @@ pipeline {
                 '''
             }
         }
-
     }
-
 }
