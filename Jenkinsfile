@@ -9,17 +9,17 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                sh "sh deploy.sh"
+                sh deploy.sh
                 cleanup
                 build_docker
                 '''
             }
         }
-        
+
         stage('Deploy') {
             steps {
                 sh '''
-                sh "sh deploy.sh"
+                sh deploy.sh
                 run_docker
                 '''
             }
