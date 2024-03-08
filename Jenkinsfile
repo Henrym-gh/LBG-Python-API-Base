@@ -8,21 +8,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh '''
-                sh deploy.sh
-                cleanup
-                build_docker
-                modify_app
-                '''
+                
+                sh "sh deploy.sh"
+                sh "cleanup"
+                sh "build_docker"
+                sh "modify_app"
+
             }
         }
 
         stage('Deploy') {
             steps {
-                sh '''
-                sh deploy.sh
-                run_docker
-                '''
+                sh "sh deploy.sh"
+                sh "run_docker"
             }
         }
     }
