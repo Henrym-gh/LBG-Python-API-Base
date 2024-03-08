@@ -14,6 +14,8 @@ pipeline {
                 build_docker
                 '''
             }
+        }
+        
         stage('Deploy') {
             steps {
                 sh '''
