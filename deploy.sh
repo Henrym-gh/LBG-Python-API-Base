@@ -3,6 +3,10 @@
 # Exit script if any command fails
 set -e
 
+printout() {
+    echo "this is to test a function"
+}
+
 cleanup() {
     docker rm -f $(docker ps -aq) || true
     docker rmi -f $(docker images) || true

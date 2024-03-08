@@ -10,6 +10,7 @@ pipeline {
             steps {
                 
                 sh "sh deploy.sh"
+                sh "printout"
                 sh "cleanup"
                 sh "build_docker"
                 sh "modify_app"
