@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                docker run -d -p 5001:$PORT -e PORT=$PORT --name coffee-app $DOCKER_IMAGE:$VERSION
+                docker run -d -p 5001:$PORT -e PORT=$PORT --name coffee-app $DOCKER_HUB_USR/$DOCKER_IMAGE:$VERSION
                 '''
             }
         }
