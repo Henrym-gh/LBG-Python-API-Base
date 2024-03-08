@@ -2,7 +2,6 @@
 
 # Exit script if any command fails
 set -e
-# Define Docker image name
 
 cleanup() {
     docker rm -f $(docker ps -aq) || true
