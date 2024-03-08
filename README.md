@@ -15,8 +15,7 @@ pip install -r requirements.txt
 In order to run the application, from your git bash terminal run:
 
 ~~~ bash
-python lbg.py
-API Listening on http://localhost:8080/index.html
+python lbg.py API Listening on http://localhost:5001/index.html
 ~~~
 
 ## Stopping the application
@@ -27,7 +26,7 @@ In order to stop the application from the git bash terminal that is running the 
 
 ### Through the browser
 
-In order to interact with this application through a browser navigate to http://localhost:8080/index.html
+In order to interact with this application through a browser navigate to http://localhost:5001/index.html
 
 There is a full CRUD functionality through the buttons on the web page.
 
@@ -36,7 +35,7 @@ There is a full CRUD functionality through the buttons on the web page.
 To create the example product run the command:
 
 ~~~ bash
-curl -s -X POST http://localhost:8080/create -H 'Content-type:application/json' -d '{"name":"example product", "description":"this is an example", "price":9.99}'
+curl -s -X POST http://localhost:5001/create -H 'Content-type:application/json' -d '{"name":"example product", "description":"this is an example", "price":9.99}'
 ~~~
 
 ### READ (all)
@@ -44,7 +43,7 @@ curl -s -X POST http://localhost:8080/create -H 'Content-type:application/json' 
 To read all of the products run the command:
 
 ~~~ bash
-curl -s -X GET http://localhost:8080/read
+curl -s -X GET http://localhost:5001/read
 ~~~
 
 ### READ (one)
@@ -52,7 +51,7 @@ curl -s -X GET http://localhost:8080/read
 To read one of the products run the command:
 
 ~~~ bash
-curl -s -X GET http://localhost:8080/read/<id>
+curl -s -X GET http://localhost:5001/read/<id>
 ~~~
 
 n.b: For these commands anything surrounded by angled braces <> needs to be replaced by you
@@ -62,7 +61,7 @@ n.b: For these commands anything surrounded by angled braces <> needs to be repl
 To update one of the products run the command:
 
 ~~~ bash
-curl -s -X PUT http://localhost:8080/update/<id> -H 'Content-type:application/json'  -d '{"name":"updated product", "description":"its brand new", "price":99.99}'
+curl -s -X PUT http://localhost:5001/update/<id> -H 'Content-type:application/json'  -d '{"name":"updated product", "description":"its brand new", "price":99.99}'
 ~~~
 
 n.b: For these commands anything surrounded by angled braces <> needs to be replaced by you
@@ -72,7 +71,7 @@ n.b: For these commands anything surrounded by angled braces <> needs to be repl
 To delete one of the products run the command:
 
 ~~~ bash
-curl -s -X DELETE http://localhost:8080/delete/<id>
+curl -s -X DELETE http://localhost:5001/delete/<id>
 ~~~
 
 n.b: For these commands anything surrounded by angled braces <> needs to be replaced by you
