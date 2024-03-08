@@ -10,9 +10,9 @@ pipeline {
         stage('Prep') {
             steps {
                 sh '''
-                chmod +x deploy.sh
-                ./deploy.sh
-                cleanup
+                docker stop $(docker ps -q) || true
+                docker rm -f $(docker ps -aq) || true
+                docker rmi -f $(docker images) || true
                 '''
             }
         }
@@ -20,8 +20,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                ./deploy.sh
-                build_docker
+                docker build -t $DOCKER_IMAGE:$VERSION .
                 '''
             }
         }
@@ -29,8 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                ./deploy.sh
-                run_docker
+                docker run -d -p 5001:$PORT -e PORT=$PORT --name coffee-app $DOCKER_IMAGE:$VERSION
                 '''
             }
         }
