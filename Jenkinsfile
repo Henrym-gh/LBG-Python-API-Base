@@ -5,23 +5,33 @@ pipeline {
         VERSION = "1.3"
         PORT = "5001"
     }
+
     stages {
+        stage('Prep') {
+            steps {
+                sh '''
+                chmod +x deploy.sh
+                ./deploy.sh
+                cleanup
+                '''
+            }
+        }
+
         stage('Build') {
             steps {
-                
-                sh "sh deploy.sh"
-                sh "printout"
-                sh "cleanup"
-                sh "build_docker"
-                sh "modify_app"
-
+                sh '''
+                ./deploy.sh
+                build_docker
+                '''
             }
         }
 
         stage('Deploy') {
             steps {
-                sh "sh deploy.sh"
-                sh "run_docker"
+                sh '''
+                ./deploy.sh
+                run_docker
+                '''
             }
         }
     }
