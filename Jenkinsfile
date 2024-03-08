@@ -1,39 +1,19 @@
-pipeline {
+pipeline {     
+
     agent any
-    environment {
-        DOCKER_USER = "henrymgh1"
-        MYSQL_ROOT_PASSWORD = credentials("MYSQL_ROOT_PASSWORD")
-    }
+
     stages {
-        stage('Build and Push') {
+
+        stage('Build step') {
+
             steps {
-                sh "docker build -t $DOCKER_USER/task2-db Task2/db"
-                sh "docker build -t $DOCKER_USER/task2-app Task2/flask-app"
-                sh "docker push $DOCKER_USER/task2-db"
-                sh "docker push $DOCKER_USER/task2-app" 
+
+                sh "sh deploy.sh"
+
             }
+
         }
-        stage('Test') {
-            steps {
-                echo "Testing..."
-                sh "sleep 5"
-                echo "PASSED"
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh "docker stop \$(docker ps -q) || sleep 1"
-                sh "docker rm \$(docker ps -aq) || sleep 1"
-                sh "docker network inspect task2 && sleep 1 || docker network create task2"
-                sh "docker run -d --network task2 --env MYSQL_ROOT_PASSWORD --name mysql $DOCKER_USER/task2-db"
-                sh "docker run -d --network task2 --env MYSQL_ROOT_PASSWORD --name flask-app $DOCKER_USER/task2-app"
-                sh "docker run -d --network task2 -p 80:80 --mount type=bind,source=\$(pwd)/Task2/nginx/nginx.conf,target=/etc/nginx/nginx.conf nginx"
-            }
-        }
+
     }
-    post {
-        always {
-            sh "docker system prune -f"
-        }
-    }
+
 }
